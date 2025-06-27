@@ -1,1 +1,32 @@
-def registro_notas():    """    Registra as notas dos alunos e calcula a média da turma.    """    notas = []    while True:        try:            nota_str = input("Digite a nota do aluno (ou 'fim' para terminar): ")            if nota_str.lower() == 'fim':                break            nota = float(nota_str)            notas.append(nota)        except ValueError:            print("Entrada inválida. Por favor, insira um número ou 'fim'.")    if notas:        media = sum(notas) / len(notas)        print(f"\nForam registradas {len(notas)} notas.")        print(f"A média da turma é: {media:.2f}")    else:        print("Nenhuma nota foi registrada.")if __name__ == "__main__":    registro_notas()
+# Dicionário para armazenar os alunos e suas notas
+alunos = {}
+
+# Pergunta quantos alunos serão registrados
+quantidade = int(input("Quantos alunos deseja registrar? "))
+
+# Loop para registrar cada aluno
+for _ in range(quantidade):
+    nome = input("\nNome do aluno: ")
+    notas = []
+    
+    # Coleta 3 notas por aluno (pode mudar se quiser mais ou menos)
+    for i in range(1, 4):
+        nota = float(input(f"Nota {i} de {nome}: "))
+        notas.append(nota)
+    
+    # Armazena no dicionário
+    alunos[nome] = notas
+
+# Agora vamos calcular as médias
+soma_das_medias = 0
+
+print("\n Médias dos alunos:")
+for nome, notas in alunos.items():
+    media = sum(notas) / len(notas)
+    soma_das_medias += media
+    print(f"{nome}: média = {media:.2f}")
+
+# Média da turma
+media_geral = soma_das_medias / len(alunos)
+print(f"\nMédia geral da turma: {media_geral:.2f}")
+
